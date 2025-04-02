@@ -46,7 +46,7 @@ Nombre y título del trabajo
 ////
 = Maven
 Herramientas y Métodos de Ingeniería del Software
-Version 2.1, Abril-2025
+Version 2.2, Abril-2025
 Joaquín Cañadas <jjcanada@ual.es>
 
 
