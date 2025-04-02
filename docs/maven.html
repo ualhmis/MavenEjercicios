@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="generator" content="Asciidoctor 2.0.17">
+<meta name="generator" content="Asciidoctor 2.0.23">
 <meta name="keywords" content="Maven HMIS">
 <meta name="author" content="Herramientas y Métodos de Ingeniería del Software">
 <title>Maven</title>
@@ -86,10 +86,10 @@ code{font-family:"Droid Sans Mono","DejaVu Sans Mono",monospace;font-weight:400;
 ul,ol,dl{line-height:1.6;margin-bottom:1.25em;list-style-position:outside;font-family:inherit}
 ul,ol{margin-left:1.5em}
 ul li ul,ul li ol{margin-left:1.25em;margin-bottom:0}
-ul.square li ul,ul.circle li ul,ul.disc li ul{list-style:inherit}
-ul.square{list-style-type:square}
 ul.circle{list-style-type:circle}
 ul.disc{list-style-type:disc}
+ul.square{list-style-type:square}
+ul.circle ul:not([class]),ul.disc ul:not([class]),ul.square ul:not([class]){list-style:inherit}
 ol li ul,ol li ol{margin-left:1.25em;margin-bottom:0}
 dl dt{margin-bottom:.3125em;font-weight:bold}
 dl dd{margin-bottom:1.25em}
@@ -142,7 +142,7 @@ p a>code:hover{color:rgba(0,0,0,.9)}
 #content::before{content:none}
 #header>h1:first-child{color:rgba(0,0,0,.85);margin-top:2.25rem;margin-bottom:0}
 #header>h1:first-child+#toc{margin-top:8px;border-top:1px solid #dddddf}
-#header>h1:only-child,body.toc2 #header>h1:nth-last-child(2){border-bottom:1px solid #dddddf;padding-bottom:8px}
+#header>h1:only-child{border-bottom:1px solid #dddddf;padding-bottom:8px}
 #header .details{border-bottom:1px solid #dddddf;line-height:1.45;padding-top:.25em;padding-bottom:.25em;padding-left:.25em;color:rgba(0,0,0,.6);display:flex;flex-flow:row wrap}
 #header .details span:first-child{margin-left:-.125em}
 #header .details span.email a{color:rgba(0,0,0,.85)}
@@ -164,6 +164,7 @@ p a>code:hover{color:rgba(0,0,0,.9)}
 #toctitle{color:#7a2518;font-size:1.2em}
 @media screen and (min-width:768px){#toctitle{font-size:1.375em}
 body.toc2{padding-left:15em;padding-right:0}
+body.toc2 #header>h1:nth-last-child(2){border-bottom:1px solid #dddddf;padding-bottom:8px}
 #toc.toc2{margin-top:0!important;background:#f8f8f7;position:fixed;width:15em;left:0;top:0;border-right:1px solid #e7e7e9;border-top-width:0!important;border-bottom-width:0!important;z-index:1000;padding:1.25em 1em;height:100%;overflow:auto}
 #toc.toc2 #toctitle{margin-top:0;margin-bottom:.8rem;font-size:1.2em}
 #toc.toc2>ul{font-size:.9em;margin-bottom:0}
@@ -210,13 +211,10 @@ table.tableblock.fit-content>caption.title{white-space:nowrap;width:0}
 .admonitionblock>table td.content{padding-left:1.125em;padding-right:1.25em;border-left:1px solid #dddddf;color:rgba(0,0,0,.6);word-wrap:anywhere}
 .admonitionblock>table td.content>:last-child>:last-child{margin-bottom:0}
 .exampleblock>.content{border:1px solid #e6e6e6;margin-bottom:1.25em;padding:1.25em;background:#fff;border-radius:4px}
-.exampleblock>.content>:first-child{margin-top:0}
-.exampleblock>.content>:last-child{margin-bottom:0}
 .sidebarblock{border:1px solid #dbdbd6;margin-bottom:1.25em;padding:1.25em;background:#f3f3f2;border-radius:4px}
-.sidebarblock>:first-child{margin-top:0}
-.sidebarblock>:last-child{margin-bottom:0}
 .sidebarblock>.content>.title{color:#7a2518;margin-top:0;text-align:center}
-.exampleblock>.content>:last-child>:last-child,.exampleblock>.content .olist>ol>li:last-child>:last-child,.exampleblock>.content .ulist>ul>li:last-child>:last-child,.exampleblock>.content .qlist>ol>li:last-child>:last-child,.sidebarblock>.content>:last-child>:last-child,.sidebarblock>.content .olist>ol>li:last-child>:last-child,.sidebarblock>.content .ulist>ul>li:last-child>:last-child,.sidebarblock>.content .qlist>ol>li:last-child>:last-child{margin-bottom:0}
+.exampleblock>.content>:first-child,.sidebarblock>.content>:first-child{margin-top:0}
+.exampleblock>.content>:last-child,.exampleblock>.content>:last-child>:last-child,.exampleblock>.content .olist>ol>li:last-child>:last-child,.exampleblock>.content .ulist>ul>li:last-child>:last-child,.exampleblock>.content .qlist>ol>li:last-child>:last-child,.sidebarblock>.content>:last-child,.sidebarblock>.content>:last-child>:last-child,.sidebarblock>.content .olist>ol>li:last-child>:last-child,.sidebarblock>.content .ulist>ul>li:last-child>:last-child,.sidebarblock>.content .qlist>ol>li:last-child>:last-child{margin-bottom:0}
 .literalblock pre,.listingblock>.content>pre{border-radius:4px;overflow-x:auto;padding:1em;font-size:.8125em}
 @media screen and (min-width:768px){.literalblock pre,.listingblock>.content>pre{font-size:.90625em}}
 @media screen and (min-width:1280px){.literalblock pre,.listingblock>.content>pre{font-size:1em}}
@@ -332,7 +330,7 @@ a.image{text-decoration:none;display:inline-block}
 a.image object{pointer-events:none}
 sup.footnote,sup.footnoteref{font-size:.875em;position:static;vertical-align:super}
 sup.footnote a,sup.footnoteref a{text-decoration:none}
-sup.footnote a:active,sup.footnoteref a:active{text-decoration:underline}
+sup.footnote a:active,sup.footnoteref a:active,#footnotes .footnote a:first-of-type:active{text-decoration:underline}
 #footnotes{padding-top:.75em;padding-bottom:.75em;margin-bottom:.625em}
 #footnotes hr{width:20%;min-width:6.25em;margin:-.25em 0 .75em;border-width:1px 0 0}
 #footnotes .footnote{padding:0 .375em 0 .225em;line-height:1.3334;font-size:.875em;margin-left:1.2em;margin-bottom:.2em}
@@ -395,7 +393,7 @@ b.conum *{color:inherit!important}
 dt,th.tableblock,td.content,div.footnote{text-rendering:optimizeLegibility}
 h1,h2,p,td.content,span.alt,summary{letter-spacing:-.01em}
 p strong,td.content strong,div.footnote strong{letter-spacing:-.005em}
-p,blockquote,dt,td.content,span.alt,summary{font-size:1.0625rem}
+p,blockquote,dt,td.content,td.hdlist1,span.alt,summary{font-size:1.0625rem}
 p{margin-bottom:1.25rem}
 .sidebarblock p,.sidebarblock dt,.sidebarblock td.content,p.tableblock{font-size:1em}
 .exampleblock>.content{background:#fffef7;border-color:#e0e0dc;box-shadow:0 1px 4px #e0e0dc}
@@ -441,216 +439,115 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <style>
 pre.rouge table td { padding: 5px; }
 pre.rouge table pre { margin: 0; }
-pre.rouge .cm {
-  color: #999988;
-  font-style: italic;
+pre.rouge, pre.rouge .w {
+  color: #24292f;
+  background-color: #f6f8fa;
 }
-pre.rouge .cp {
-  color: #999999;
-  font-weight: bold;
-}
-pre.rouge .c1 {
-  color: #999988;
-  font-style: italic;
-}
-pre.rouge .cs {
-  color: #999999;
-  font-weight: bold;
-  font-style: italic;
-}
-pre.rouge .c, pre.rouge .ch, pre.rouge .cd, pre.rouge .cpf {
-  color: #999988;
-  font-style: italic;
-}
-pre.rouge .err {
-  color: #a61717;
-  background-color: #e3d2d2;
-}
-pre.rouge .gd {
-  color: #000000;
-  background-color: #ffdddd;
-}
-pre.rouge .ge {
-  color: #000000;
-  font-style: italic;
+pre.rouge .k, pre.rouge .kd, pre.rouge .kn, pre.rouge .kp, pre.rouge .kr, pre.rouge .kt, pre.rouge .kv {
+  color: #cf222e;
 }
 pre.rouge .gr {
-  color: #aa0000;
+  color: #f6f8fa;
 }
-pre.rouge .gh {
-  color: #999999;
+pre.rouge .gd {
+  color: #82071e;
+  background-color: #ffebe9;
+}
+pre.rouge .nb {
+  color: #953800;
+}
+pre.rouge .nc {
+  color: #953800;
+}
+pre.rouge .no {
+  color: #953800;
+}
+pre.rouge .nn {
+  color: #953800;
+}
+pre.rouge .sr {
+  color: #116329;
+}
+pre.rouge .na {
+  color: #116329;
+}
+pre.rouge .nt {
+  color: #116329;
 }
 pre.rouge .gi {
-  color: #000000;
-  background-color: #ddffdd;
+  color: #116329;
+  background-color: #dafbe1;
 }
-pre.rouge .go {
-  color: #888888;
+pre.rouge .kc {
+  color: #0550ae;
 }
-pre.rouge .gp {
-  color: #555555;
+pre.rouge .l, pre.rouge .ld, pre.rouge .m, pre.rouge .mb, pre.rouge .mf, pre.rouge .mh, pre.rouge .mi, pre.rouge .il, pre.rouge .mo, pre.rouge .mx {
+  color: #0550ae;
 }
-pre.rouge .gs {
+pre.rouge .sb {
+  color: #0550ae;
+}
+pre.rouge .bp {
+  color: #0550ae;
+}
+pre.rouge .ne {
+  color: #0550ae;
+}
+pre.rouge .nl {
+  color: #0550ae;
+}
+pre.rouge .py {
+  color: #0550ae;
+}
+pre.rouge .nv, pre.rouge .vc, pre.rouge .vg, pre.rouge .vi, pre.rouge .vm {
+  color: #0550ae;
+}
+pre.rouge .o, pre.rouge .ow {
+  color: #0550ae;
+}
+pre.rouge .gh {
+  color: #0550ae;
   font-weight: bold;
 }
 pre.rouge .gu {
-  color: #aaaaaa;
-}
-pre.rouge .gt {
-  color: #aa0000;
-}
-pre.rouge .kc {
-  color: #000000;
+  color: #0550ae;
   font-weight: bold;
 }
-pre.rouge .kd {
-  color: #000000;
-  font-weight: bold;
-}
-pre.rouge .kn {
-  color: #000000;
-  font-weight: bold;
-}
-pre.rouge .kp {
-  color: #000000;
-  font-weight: bold;
-}
-pre.rouge .kr {
-  color: #000000;
-  font-weight: bold;
-}
-pre.rouge .kt {
-  color: #445588;
-  font-weight: bold;
-}
-pre.rouge .k, pre.rouge .kv {
-  color: #000000;
-  font-weight: bold;
-}
-pre.rouge .mf {
-  color: #009999;
-}
-pre.rouge .mh {
-  color: #009999;
-}
-pre.rouge .il {
-  color: #009999;
-}
-pre.rouge .mi {
-  color: #009999;
-}
-pre.rouge .mo {
-  color: #009999;
-}
-pre.rouge .m, pre.rouge .mb, pre.rouge .mx {
-  color: #009999;
-}
-pre.rouge .sa {
-  color: #000000;
-  font-weight: bold;
-}
-pre.rouge .sb {
-  color: #d14;
-}
-pre.rouge .sc {
-  color: #d14;
-}
-pre.rouge .sd {
-  color: #d14;
-}
-pre.rouge .s2 {
-  color: #d14;
-}
-pre.rouge .se {
-  color: #d14;
-}
-pre.rouge .sh {
-  color: #d14;
-}
-pre.rouge .si {
-  color: #d14;
-}
-pre.rouge .sx {
-  color: #d14;
-}
-pre.rouge .sr {
-  color: #009926;
-}
-pre.rouge .s1 {
-  color: #d14;
-}
-pre.rouge .ss {
-  color: #990073;
-}
-pre.rouge .s, pre.rouge .dl {
-  color: #d14;
-}
-pre.rouge .na {
-  color: #008080;
-}
-pre.rouge .bp {
-  color: #999999;
-}
-pre.rouge .nb {
-  color: #0086B3;
-}
-pre.rouge .nc {
-  color: #445588;
-  font-weight: bold;
-}
-pre.rouge .no {
-  color: #008080;
+pre.rouge .s, pre.rouge .sa, pre.rouge .sc, pre.rouge .dl, pre.rouge .sd, pre.rouge .s2, pre.rouge .se, pre.rouge .sh, pre.rouge .sx, pre.rouge .s1, pre.rouge .ss {
+  color: #0a3069;
 }
 pre.rouge .nd {
-  color: #3c5d5d;
-  font-weight: bold;
-}
-pre.rouge .ni {
-  color: #800080;
-}
-pre.rouge .ne {
-  color: #990000;
-  font-weight: bold;
+  color: #8250df;
 }
 pre.rouge .nf, pre.rouge .fm {
-  color: #990000;
+  color: #8250df;
+}
+pre.rouge .err {
+  color: #f6f8fa;
+  background-color: #82071e;
+}
+pre.rouge .c, pre.rouge .ch, pre.rouge .cd, pre.rouge .cm, pre.rouge .cp, pre.rouge .cpf, pre.rouge .c1, pre.rouge .cs {
+  color: #6e7781;
+}
+pre.rouge .gl {
+  color: #6e7781;
+}
+pre.rouge .gt {
+  color: #6e7781;
+}
+pre.rouge .ni {
+  color: #24292f;
+}
+pre.rouge .si {
+  color: #24292f;
+}
+pre.rouge .ge {
+  color: #24292f;
+  font-style: italic;
+}
+pre.rouge .gs {
+  color: #24292f;
   font-weight: bold;
-}
-pre.rouge .nl {
-  color: #990000;
-  font-weight: bold;
-}
-pre.rouge .nn {
-  color: #555555;
-}
-pre.rouge .nt {
-  color: #000080;
-}
-pre.rouge .vc {
-  color: #008080;
-}
-pre.rouge .vg {
-  color: #008080;
-}
-pre.rouge .vi {
-  color: #008080;
-}
-pre.rouge .nv, pre.rouge .vm {
-  color: #008080;
-}
-pre.rouge .ow {
-  color: #000000;
-  font-weight: bold;
-}
-pre.rouge .o {
-  color: #000000;
-  font-weight: bold;
-}
-pre.rouge .w {
-  color: #bbbbbb;
-}
-pre.rouge {
-  background-color: #f8f8f8;
 }
 </style>
 </head>
@@ -659,45 +556,41 @@ pre.rouge {
 <h1>Maven</h1>
 <div class="details">
 <span id="author" class="author">Herramientas y Métodos de Ingeniería del Software</span><br>
-<span id="revnumber">version 2.0,</span>
-<span id="revdate">Marzo-2023</span>
+<span id="revnumber">version 2.1,</span>
+<span id="revdate">Abril-2025</span>
 </div>
 <div id="toc" class="toc2">
 <div id="toctitle">Tabla de contenidos</div>
-<ul class="sectlevel0">
-<li><a href="#_prerrequisitos">Prerrequisitos</a>
 <ul class="sectlevel1">
-<li><a href="#_configuración_del_utf_8_en_el_ide">Configuración del UTF-8 en el IDE</a>
+<li><a href="#_prerrequisitos">Prerrequisitos</a>
 <ul class="sectlevel2">
-<li><a href="#_eclipse">Eclipse</a></li>
-<li><a href="#_visual_studio_code">Visual Studio Code</a></li>
-</ul>
-</li>
+<li><a href="#_configuración_del_utf_8_en_el_ide">Configuración del UTF-8 en el IDE</a></li>
 </ul>
 </li>
 <li><a href="#_pasos_a_seguir">Pasos a seguir</a>
 <ul class="sectlevel1">
-<li><a href="#_convertir_a_proyecto_maven">1. Convertir a proyecto Maven</a></li>
-<li><a href="#_configurar_el_archivo_pom_xml">2. Configurar el archivo <code>pom.xml</code></a></li>
-<li><a href="#_añadir_las_dependencias_a_junit5">3. Añadir las dependencias a JUnit5</a></li>
-<li><a href="#_lanzar_los_test_desde_maven">4. Lanzar los test desde Maven</a></li>
-<li><a href="#_surefire_plugin">5. Surefire plugin</a></li>
-<li><a href="#_plugin_de_cobertura">6. Plugin de Cobertura</a></li>
-<li><a href="#_verificar_un_valor_mínimo_de_cobertura">7. Verificar un valor mínimo de cobertura</a></li>
-<li><a href="#_análisis_estático_de_código">8. Análisis estático de Código</a>
+<li><a href="#_crear_un_proyecto_maven">1. Crear un proyecto Maven</a></li>
+<li><a href="#_archivo_de_configuración_de_maven_pom_xml">2. Archivo de configuración de Maven: <code>pom.xml</code></a></li>
+<li><a href="#_configurar_el_archivo_pom_xml">3. Configurar el archivo <code>pom.xml</code></a></li>
+<li><a href="#_añadir_las_dependencias_a_junit5">4. Añadir las dependencias a JUnit5</a></li>
+<li><a href="#_lanzar_los_test_desde_maven">5. Lanzar los test desde Maven</a></li>
+<li><a href="#_surefire_plugin">6. Surefire plugin</a></li>
+<li><a href="#_plugin_de_cobertura">7. Plugin de Cobertura</a></li>
+<li><a href="#_verificar_un_valor_mínimo_de_cobertura">8. Verificar un valor mínimo de cobertura</a></li>
+<li><a href="#_análisis_estático_de_código">9. Análisis estático de Código</a>
 <ul class="sectlevel2">
-<li><a href="#_site">8.1. Site</a></li>
-<li><a href="#_checkstyle">8.2. Checkstyle</a></li>
-<li><a href="#_pmd">8.3. PMD</a></li>
-<li><a href="#_findbugsspotbugs">8.4. FindBugs/Spotbugs</a></li>
+<li><a href="#_site">9.1. Site</a></li>
+<li><a href="#_checkstyle">9.2. Checkstyle</a></li>
+<li><a href="#_pmd">9.3. PMD</a></li>
+<li><a href="#_findbugsspotbugs">9.4. FindBugs/Spotbugs</a></li>
 </ul>
 </li>
-<li><a href="#_documentación_javadoc">9. Documentación JavaDoc</a>
+<li><a href="#_documentación_javadoc">10. Documentación JavaDoc</a>
 <ul class="sectlevel2">
-<li><a href="#_diagramas_de_clases">9.1. Diagramas de clases</a></li>
+<li><a href="#_diagramas_de_clases">10.1. Diagramas de clases</a></li>
 </ul>
 </li>
-<li><a href="#_owasp_dependency_check">10. OWASP Dependency Check</a></li>
+<li><a href="#_owasp_dependency_check">11. OWASP Dependency Check</a></li>
 <li><a href="#_entrega">Entrega</a></li>
 <li><a href="#_referencias">Referencias</a></li>
 </ul>
@@ -713,7 +606,7 @@ pre.rouge {
 </div>
 <div class="quoteblock abstract">
 <blockquote>
-<a href="https://maven.apache.org/what-is-maven.html">Maven</a> es una herramienta de construcción y gestión de dependencias para proyectos Java. Maven se encarga de la gestión del ciclo de vida del proyecto, incluyendo la compilación, la ejecución de los test, la generación de documentación, el empaquetado y la distribución del software. Además, proporciona un sistema de construcción estandarizado y una estructura de proyecto coherente, lo que hace que sea más fácil para los desarrolladores trabajar en proyectos grandes y complejos. Además, proporciona gestión de dependencias, es decir, permite que un proyecto pueda utilizar librerías de terceros sin tener que preocuparse de cómo se instalan, cómo se actualizan, etc. Pero Maven es mucho más que eso: el objetivo principal de es permitir que un desarrollador comprenda el estado completo de un esfuerzo de desarrollo en el menor tiempo posible. Para lograr este objetivo, Maven se ocupa de varias áreas:
+<a href="https://maven.apache.org/what-is-maven.html">Maven</a> es una herramienta de automatización de la construcción (<em>build</em>) y gestión de dependencias para proyectos Java. Maven se encarga de la gestión del ciclo de vida del proyecto, incluyendo la compilación, la ejecución de los test, la generación de documentación, el empaquetado y la distribución del software. Además, proporciona un sistema de construcción estandarizado y una estructura de proyecto coherente, lo que hace que sea más fácil para los desarrolladores trabajar en proyectos grandes y complejos. Además, proporciona gestión de dependencias, es decir, permite que un proyecto pueda utilizar librerías de terceros sin tener que preocuparse de cómo se instalan, cómo se actualizan, etc. Pero Maven es mucho más que eso: el objetivo principal de es permitir que un desarrollador comprenda el estado completo de un esfuerzo de desarrollo en el menor tiempo posible. Para lograr este objetivo, Maven se ocupa de varias áreas:
 </blockquote>
 </div>
 <div class="ulist">
@@ -732,24 +625,52 @@ pre.rouge {
 </li>
 </ul>
 </div>
-<div class="paragraph">
+<div class="ulist">
 <div class="title">Objetivos</div>
-<p>*
-*</p>
+<ul>
+<li>
+<p>Crear un proyecto nuevo en Maven y <em>mavernizar</em> un proyecto existente.</p>
+</li>
+<li>
+<p>Configurar el archivo <code>pom.xml</code> para incluir las dependencias necesarias para el proyecto.</p>
+</li>
+<li>
+<p>Añadir y configurar plugins para realizar las tareas básicas, como ejecutar los tests unitarios, obtener la cobertura de los tests, análisis estático de código, generación de documentación JavaDoc, diagramas de clases, etc.</p>
+</li>
+<li>
+<p>Realizar análisis de dependencias con OWASP Dependency Check.</p>
+</li>
+</ul>
 </div>
-</div>
-</div>
-<h1 id="_prerrequisitos" class="sect0">Prerrequisitos</h1>
-<div class="openblock partintro">
-<div class="content">
-El guion de esta actividad está actualizado para JUnit 5. Para cada proyecto de la actividad 05 - Pruebas Unitarias en JUnit.
 </div>
 </div>
 <div class="sect1">
-<h2 id="_configuración_del_utf_8_en_el_ide">Configuración del UTF-8 en el IDE</h2>
+<h2 id="_prerrequisitos">Prerrequisitos</h2>
 <div class="sectionbody">
+<div class="paragraph">
+<p>Para realizar esta actividad debes partir del o de los proyectos realizado(s) en la(s) <strong>actividad(es) previa(s)</strong> sobre <strong>Pruebas Unitarias en JUnit 5</strong>.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Los ejemplos de código y capturas de pantalla de esta actividad se basan en el repositorio <a href="https://github.com/ualhmis/hmis-coches" class="bare">https://github.com/ualhmis/hmis-coches</a>.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
 <div class="sect2">
-<h3 id="_eclipse">Eclipse</h3>
+<h3 id="_configuración_del_utf_8_en_el_ide">Configuración del UTF-8 en el IDE</h3>
+<div class="paragraph">
+<p>Antes de empezar, asegúrate de que el IDE que estás utilizando está configurado para trabajar con UTF-8.</p>
+</div>
+<div class="sect3">
+<h4 id="_eclipse">Eclipse</h4>
 <div class="exampleblock">
 <div class="content">
 <div class="paragraph">
@@ -763,18 +684,30 @@ El guion de esta actividad está actualizado para JUnit 5. Para cada proyecto de
 </div>
 </div>
 </div>
-<div class="sect2">
-<h3 id="_visual_studio_code">Visual Studio Code</h3>
+<div class="sect3">
+<h4 id="_visual_studio_code">Visual Studio Code</h4>
 <div class="exampleblock">
 <div class="content">
 <div class="paragraph">
-<p><span class="image"><img src="images/Visual_Studio_Code_icon.png" alt="VSCode"></span> Si usas VS Code para desarrollar en Java:</p>
+<p><span class="image"><img src="images/Visual_Studio_Code_icon.png" alt="VSCode"></span> Si usas VS Code para desarrollar en Java debes tener en cuenta que, a diferencia de Eclipse que el propio <em>bundle</em> ya incorpora todas las depedencias para trabajar en Java (JRE, JUnit, Maven, etc.), en VS Code debes instalar y configurar esas herramientas de manera independiente en tu sistema.</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Instala las extensiones Java, Maven, Java Debugger</p>
+<p>Debes tener instalado Java JDK en tu sistema, así como Maven. Descarga Maven desde <a href="https://maven.apache.org/download.cgi">Downloading Apache Maven</a> y sigue las instrucciones de instalación <a href="https://www.baeldung.com/install-maven-on-windows-linux-mac">How to Install Maven on Windows, Linux, and Mac</a>.</p>
 </li>
+<li>
+<p>En VSCode, instala las extensiones Java, Maven, Java Debugger,&#8230;&#8203;</p>
+</li>
+</ol>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/vscode-extensions_Java.png" alt="vscode-extensions_Java" width="50%">
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic" start="3">
 <li>
 <p>Si no configuras el UTF-8 en el IDE, los tests de caracteres con acentos o con eñes fallarán. Configurar UTF-8 en la compilación y depuración con Java: Extensions / Java Debugger</p>
 </li>
@@ -798,100 +731,43 @@ El guion de esta actividad está actualizado para JUnit 5. Para cada proyecto de
 </div>
 </div>
 </div>
+</div>
 <h1 id="_pasos_a_seguir" class="sect0">Pasos a seguir</h1>
 <div class="sect1">
-<h2 id="_convertir_a_proyecto_maven">1. Convertir a proyecto Maven</h2>
+<h2 id="_crear_un_proyecto_maven">1. Crear un proyecto Maven</h2>
 <div class="sectionbody">
-<div class="exampleblock">
-<div class="content">
 <div class="paragraph">
-<p><span class="image"><img src="images/eclipse_2.png" alt="Eclipse"></span> Si en la actividad 5 habías partido del proyecto en GitHub, como ualhmis/junitEjercicios o ualhmis/hmis-coches, este paso y los dos siguientes ya están hechos. Simplemente debes comprobar que ya lo habíamos hecho en la actividad 5. Si, por el contrario, tu(s) proyecto(s) de la actividad 5 no están mavenizados, hazlo ahora:</p>
-</div>
-<div class="paragraph">
-<p>Sobre el proyecto, botón derecho, <em>Configure</em>, <em>Convert to maven project</em></p>
+<p><span class="image"><img src="images/eclipse_2.png" alt="Eclipse"></span> Desde Eclipse, para crear un proyecto Maven: <em>New &gt;  Maven Project</em>. En la siguiente ventana, selecciona la opción <em>Create a simple project (skip archetype selection)</em>.</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/convert-to-maven-project.png" alt="convert-to-maven-project">
+<img src="images/New-Maven-Project.png" alt="New-Maven-Project">
 </div>
 </div>
 <div class="paragraph">
-<p>Verás que se ha creado un nuevo archivo llamado <code>pom.xml</code> que es el que contiene la configuración de Maven para el proyecto.</p>
-</div>
-</div>
-</div>
-<div class="exampleblock">
-<div class="content">
-<div class="paragraph">
-<p><span class="image"><img src="images/Visual_Studio_Code_icon.png" alt="VSCode"></span> Si usas VS Code para desarrollar en Java, haz lo siguiente:</p>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Crea un archivo <code>pom.xml</code> en la raíz del proyecto, con el siguiente contenido básico:</p>
-</li>
-</ol>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="rouge highlight"><code data-lang="xml"><span class="nt">&lt;project</span> <span class="na">xmlns=</span><span class="s">"http://maven.apache.org/POM/4.0.0"</span> <span class="na">xmlns:xsi=</span><span class="s">"http://www.w3.org/2001/XMLSchema-instance"</span> <span class="na">xsi:schemaLocation=</span><span class="s">"http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd"</span><span class="nt">&gt;</span>
-	<span class="nt">&lt;modelVersion&gt;</span>4.0.0<span class="nt">&lt;/modelVersion&gt;</span>
-	<span class="nt">&lt;groupId&gt;</span>hmis-coches<span class="nt">&lt;/groupId&gt;</span>
-	<span class="nt">&lt;artifactId&gt;</span>hmis-coches<span class="nt">&lt;/artifactId&gt;</span>
-	<span class="nt">&lt;version&gt;</span>0.0.1-SNAPSHOT<span class="nt">&lt;/version&gt;</span>
-    <span class="nt">&lt;build&gt;</span>
-    	<span class="nt">&lt;plugins&gt;</span>
-			<span class="nt">&lt;plugin&gt;</span>
-				<span class="nt">&lt;artifactId&gt;</span>maven-compiler-plugin<span class="nt">&lt;/artifactId&gt;</span>
-				<span class="nt">&lt;version&gt;</span>3.11.0<span class="nt">&lt;/version&gt;</span>
-				<span class="nt">&lt;configuration&gt;</span>
-					<span class="nt">&lt;release&gt;</span>11<span class="nt">&lt;/release&gt;</span>
-				<span class="nt">&lt;/configuration&gt;</span>
-			<span class="nt">&lt;/plugin&gt;</span>
-        <span class="nt">&lt;/plugins&gt;</span>
-    <span class="nt">&lt;/build&gt;</span>
-<span class="nt">&lt;/project&gt;</span></code></pre>
-</div>
-</div>
-</div>
-</div>
-<div class="paragraph">
-<p>El contenido mínimo del <code>pom.xml</code> es:</p>
+<p>Introduce los datos básicos:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p><code>project</code> root</p>
+<p>Group id: <code>ual.hmis</code>, es el identificador del grupo del proyecto.</p>
 </li>
 <li>
-<p><code>modelVersion</code> - debe ser <code>4.0.0</code></p>
+<p>Artifact id: <code>sesionXX</code>, es el identificador de artefacto (proyecto)</p>
 </li>
 <li>
-<p><code>groupId</code> - identificador del grupo del proyecto.</p>
+<p>Version: <code>0.0.1-Snapshot</code>, es la version del artefacto bajo el grupo especificado</p>
 </li>
 <li>
-<p><code>artifactId</code> - identificador de artefacto (proyecto)</p>
-</li>
-<li>
-<p><code>version</code> - version del artefacto bajo el grupo especificado</p>
+<p>Packaging: <code>jar</code>, es el tipo de empaquetado del artefacto. En este caso, un archivo <code>.jar</code> ejecutable.</p>
 </li>
 </ul>
 </div>
-<div class="paragraph">
-<p>Los parámetros <code>groupId</code>, <code>artifactId</code>, y <code>version</code> forma el nombre completo de artefacto del proyecto (project&#8217;s fully qualified artifact name). Este nombre tiene la forma <code>&lt;groupId&gt;:&lt;artifactId&gt;:&lt;version&gt;</code>. En el ejemplo anterior, sería <code>hmis-coches.hmis-coches:0.0.1-SNAPSHOT</code>.</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>build</code> - contiene la configuración de construcción del proyecto, y los plugins que se ejecutan durante la misma. En el ejemplo anterior, se configura el plugin <code>maven-compiler-plugin</code> para que compile con <strong>Java 11</strong>.</p>
-</li>
-</ul>
+<div class="imageblock">
+<div class="content">
+<img src="images/New-Maven-Project-groupid.png" alt="New-Maven-Project">
 </div>
 </div>
-</div>
-<div class="sect1">
-<h2 id="_configurar_el_archivo_pom_xml">2. Configurar el archivo <code>pom.xml</code></h2>
-<div class="sectionbody">
 <div class="paragraph">
 <p>La estructura predeterminada de un proyecto Maven sigue una convención denominada "Standard Directory Layout" (Estructura de Directorios Estándar), que proporciona una forma coherente de organizar los archivos de un proyecto. Esta estructura se compone de los siguientes directorios y subdirectorios:</p>
 </div>
@@ -921,30 +797,159 @@ El guion de esta actividad está actualizado para JUnit 5. Para cada proyecto de
 </div>
 </div>
 </div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
 <div class="paragraph">
-<p>Si tu proyecto Java tiene otra estructura distinta a esta estructura de carpetas predeterminada, puedes modificarla en el archivo <code>pom.xml</code>. Por ejemplo, partiendo de la estructura de proyecto habitual en Eclipse, los fuentes están en la carpeta <code>src</code> y las clases con tests en la carpeta <code>test</code>.</p>
+<p>En cualquier caso, es recomendable mantener la estructura predeterminada de Maven. Así te asegurarás de que los archivos y recursos se encuentren en las ubicaciones esperadas, facilitando la integración con herramientas y plugins de Maven.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="exampleblock">
+<div class="content">
+<div class="paragraph">
+<p><strong>Convertir a proyecto Maven</strong></p>
 </div>
 <div class="paragraph">
-<p>Para empezar, debes configurar el proyecto con <strong>codificación <code>UTF-8</code></strong>, y las carpetas donde están los fuentes y los tests:</p>
+<p><span class="image"><img src="images/eclipse_2.png" alt="Eclipse"></span> Si partes de un proyecto que ya tiene contenido pero no está mavenizado(s), hazlo ahora:</p>
+</div>
+<div class="paragraph">
+<p>Sobre el proyecto, botón derecho, <em>Configure</em>, <em>Convert to maven project</em></p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/convert-to-maven-project.png" alt="convert-to-maven-project">
+</div>
+</div>
+<div class="paragraph">
+<p>Verás que se ha creado un nuevo archivo llamado <code>pom.xml</code> que es el que contiene la configuración de Maven para el proyecto.</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="images/Visual_Studio_Code_icon.png" alt="VSCode"></span> Si usas VS Code para desarrollar en Java, crea manualmente el archivo <code>pom.xml</code> en la raíz del proyecto, con el contenido básico que aparece en la siguiente sección.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_archivo_de_configuración_de_maven_pom_xml">2. Archivo de configuración de Maven: <code>pom.xml</code></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>El archivo <code>pom.xml</code> es el archivo de configuración principal de un proyecto Maven. Contiene información sobre el proyecto y la configuración de Maven para construirlo. El archivo <code>pom.xml</code> se encuentra en la raíz del proyecto y sigue un formato XML específico.</p>
+</div>
+<div class="paragraph">
+<p>El contenido mínimo del <code>pom.xml</code> es:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>project</code> root</p>
+</li>
+<li>
+<p><code>modelVersion</code> - debe ser <code>4.0.0</code></p>
+</li>
+<li>
+<p><code>groupId</code> - identificador del grupo del proyecto.</p>
+</li>
+<li>
+<p><code>artifactId</code> - identificador de artefacto (proyecto)</p>
+</li>
+<li>
+<p><code>version</code> - version del artefacto bajo el grupo especificado</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Los parámetros <code>groupId</code>, <code>artifactId</code>, y <code>version</code> forma el nombre completo de artefacto del proyecto (project&#8217;s fully qualified artifact name). Este nombre tiene la forma <code>&lt;groupId&gt;:&lt;artifactId&gt;:&lt;version&gt;</code>. En el ejemplo anterior, sería <code>ual.hmis.sesionXX:0.0.1-SNAPSHOT</code>.</p>
+</div>
+<div class="paragraph">
+<p>Además, el archivo <code>pom.xml</code> puede contener otros elementos opcionales, como:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>properties</code> - contiene propiedades del proyecto, como la versión de Java utilizada para compilar el proyecto. En el siguiente ejemplo se establece la codificación a <code>UTF-8</code>.</p>
+</li>
+<li>
+<p><code>build</code> - contiene la configuración de construcción del proyecto, y los plugins que se ejecutan durante la misma. En el siguiente ejemplo  se configura el plugin <code>maven-compiler-plugin</code> para que compile con <strong>Java 21</strong>.</p>
+</li>
+</ul>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="xml"><span class="nt">&lt;properties&gt;</span>
-  <span class="nt">&lt;project.build.sourceEncoding&gt;</span>UTF-8<span class="nt">&lt;/project.build.sourceEncoding&gt;</span>
-  <span class="nt">&lt;project.reporting.outputEncoding&gt;</span>UTF-8<span class="nt">&lt;/project.reporting.outputEncoding&gt;</span>
-<span class="nt">&lt;/properties&gt;</span>
-
-<span class="nt">&lt;build&gt;</span>
+<pre class="rouge highlight"><code data-lang="xml"><span class="nt">&lt;project</span> <span class="na">xmlns=</span><span class="s">"http://maven.apache.org/POM/4.0.0"</span>
+    <span class="na">xmlns:xsi=</span><span class="s">"http://www.w3.org/2001/XMLSchema-instance"</span>
+    <span class="na">xsi:schemaLocation=</span><span class="s">"http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;modelVersion&gt;</span>4.0.0<span class="nt">&lt;/modelVersion&gt;</span>
+    <span class="nt">&lt;groupId&gt;</span>ual.hmis<span class="nt">&lt;/groupId&gt;</span>
+    <span class="nt">&lt;artifactId&gt;</span>sesion06<span class="nt">&lt;/artifactId&gt;</span>
+    <span class="nt">&lt;version&gt;</span>0.0.1-SNAPSHOT<span class="nt">&lt;/version&gt;</span>
+    <span class="nt">&lt;properties&gt;</span>
+        <span class="nt">&lt;project.build.sourceEncoding&gt;</span>UTF-8<span class="nt">&lt;/project.build.sourceEncoding&gt;</span>
+        <span class="nt">&lt;project.reporting.outputEncoding&gt;</span>UTF-8<span class="nt">&lt;/project.reporting.outputEncoding&gt;</span>
+    <span class="nt">&lt;/properties&gt;</span>
+    <span class="nt">&lt;build&gt;</span>
+        <span class="nt">&lt;plugins&gt;</span>
+            <span class="nt">&lt;plugin&gt;</span>
+                <span class="nt">&lt;artifactId&gt;</span>maven-compiler-plugin<span class="nt">&lt;/artifactId&gt;</span>
+                <span class="nt">&lt;version&gt;</span>3.13.0<span class="nt">&lt;/version&gt;</span>
+                <span class="nt">&lt;configuration&gt;</span>
+                    <span class="nt">&lt;release&gt;</span>21<span class="nt">&lt;/release&gt;</span>
+                <span class="nt">&lt;/configuration&gt;</span>
+            <span class="nt">&lt;/plugin&gt;</span>
+        <span class="nt">&lt;/plugins&gt;</span>
+    <span class="nt">&lt;/build&gt;</span>
+<span class="nt">&lt;/project&gt;</span></code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_configurar_el_archivo_pom_xml">3. Configurar el archivo <code>pom.xml</code></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Si tu proyecto Java tiene otra estructura distinta a esta estructura de carpetas predeterminada, puedes modificarla en el archivo <code>pom.xml</code>. Por ejemplo, partiendo de la estructura de proyecto habitual en Eclipse, los fuentes están en la carpeta <code>src</code> y las clases con tests en la carpeta <code>test</code>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="xml"><span class="nt">&lt;build&gt;</span>
   <span class="nt">&lt;sourceDirectory&gt;</span>src<span class="nt">&lt;/sourceDirectory&gt;</span>
   <span class="nt">&lt;testSourceDirectory&gt;</span>test<span class="nt">&lt;/testSourceDirectory&gt;</span>
    ...
 <span class="nt">&lt;/build&gt;</span></code></pre>
 </div>
 </div>
+<div class="paragraph">
+<p>También puedes modificar las carpetas donde se guardan los <code>resources</code>, archivos necesarios para el proyecto. Por ejemplo, si quieres modificarlos a las mismas carpetas donde están los fuentes y los tests, puedes añadir la siguiente configuración al <code>pom.xml</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="xml"><span class="nt">&lt;build&gt;</span>
+	...
+	<span class="nt">&lt;resources&gt;</span>
+		<span class="nt">&lt;resource&gt;</span>
+			<span class="nt">&lt;directory&gt;</span>src/main/java/<span class="nt">&lt;/directory&gt;</span>
+		<span class="nt">&lt;/resource&gt;</span>
+	<span class="nt">&lt;/resources&gt;</span>
+	<span class="nt">&lt;testResources&gt;</span>
+		<span class="nt">&lt;testResource&gt;</span>
+			<span class="nt">&lt;directory&gt;</span>src/test/java/<span class="nt">&lt;/directory&gt;</span>
+		<span class="nt">&lt;/testResource&gt;</span>
+	<span class="nt">&lt;/testResources&gt;</span>
+  ...
+<span class="nt">&lt;/build&gt;</span></code></pre>
+</div>
+</div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_añadir_las_dependencias_a_junit5">3. Añadir las dependencias a JUnit5</h2>
+<h2 id="_añadir_las_dependencias_a_junit5">4. Añadir las dependencias a JUnit5</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Maven proporciona gestión de dependencias, es decir, permite que un proyecto pueda utilizar librerías de terceros sin tener que preocuparse de cómo se instalan, cómo se actualizan, etc.  A partir de ahora, deberás configurar el archivo <code>pom.xml</code> para que incluya las dependencias necesarias para el proyecto.</p>
@@ -957,19 +962,19 @@ El guion de esta actividad está actualizado para JUnit 5. Para cada proyecto de
 <pre class="rouge highlight"><code data-lang="xml">	<span class="nt">&lt;dependency&gt;</span>
 		<span class="nt">&lt;groupId&gt;</span>org.junit.jupiter<span class="nt">&lt;/groupId&gt;</span>
 		<span class="nt">&lt;artifactId&gt;</span>junit-jupiter-engine<span class="nt">&lt;/artifactId&gt;</span>
-		<span class="nt">&lt;version&gt;</span>5.9.2<span class="nt">&lt;/version&gt;</span> <i class="conum" data-value="1"></i><b>(1)</b>
+		<span class="nt">&lt;version&gt;</span>5.12.1<span class="nt">&lt;/version&gt;</span> <i class="conum" data-value="1"></i><b>(1)</b>
 		<span class="nt">&lt;scope&gt;</span>test<span class="nt">&lt;/scope&gt;</span>
 	<span class="nt">&lt;/dependency&gt;</span>
 	<span class="nt">&lt;dependency&gt;</span>
 		<span class="nt">&lt;groupId&gt;</span>org.junit.jupiter<span class="nt">&lt;/groupId&gt;</span>
 		<span class="nt">&lt;artifactId&gt;</span>junit-jupiter-api<span class="nt">&lt;/artifactId&gt;</span>
-		<span class="nt">&lt;version&gt;</span>5.9.2<span class="nt">&lt;/version&gt;</span>
+		<span class="nt">&lt;version&gt;</span>5.12.1<span class="nt">&lt;/version&gt;</span>
 		<span class="nt">&lt;scope&gt;</span>test<span class="nt">&lt;/scope&gt;</span>
 	<span class="nt">&lt;/dependency&gt;</span>
    	<span class="nt">&lt;dependency&gt;</span>
 		<span class="nt">&lt;groupId&gt;</span>org.junit.jupiter<span class="nt">&lt;/groupId&gt;</span>
 		<span class="nt">&lt;artifactId&gt;</span>junit-jupiter-params<span class="nt">&lt;/artifactId&gt;</span>
-		<span class="nt">&lt;version&gt;</span>5.9.2<span class="nt">&lt;/version&gt;</span>
+		<span class="nt">&lt;version&gt;</span>5.12.1<span class="nt">&lt;/version&gt;</span>
 		<span class="nt">&lt;scope&gt;</span>test<span class="nt">&lt;/scope&gt;</span>
 	<span class="nt">&lt;/dependency&gt;</span></code></pre>
 </div>
@@ -978,7 +983,7 @@ El guion de esta actividad está actualizado para JUnit 5. Para cada proyecto de
 <table>
 <tr>
 <td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>La versión de JUnit5 que usamos en el momento de escribir este documento es la <code>5.9.2</code>, pero debes comprobar la última versión en <a href="https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-api" class="bare">https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-api</a> y usarla en tu <code>pom.xml</code>, en las tres dependencias de JUnit5.</td>
+<td>La versión de JUnit5 que usamos en el momento de escribir este documento es la <code>5.12.1</code>, pero debes comprobar la última versión en <a href="https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-api" class="bare">https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-api</a> y usarla en tu <code>pom.xml</code>, en las tres dependencias de JUnit5.</td>
 </tr>
 </table>
 </div>
@@ -1007,7 +1012,7 @@ El guion de esta actividad está actualizado para JUnit 5. Para cada proyecto de
 </div>
 </div>
 <div class="sect1">
-<h2 id="_lanzar_los_test_desde_maven">4. Lanzar los test desde Maven</h2>
+<h2 id="_lanzar_los_test_desde_maven">5. Lanzar los test desde Maven</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Maven define un ciclo de vida (<a href="https://maven.apache.org/guides/introduction/introduction-to-the-lifecycle.html">Maven lifecycle</a>) para compilar/test/empaquetar el proyecto. El ciclo de vida de Maven es un conjunto predefinido de fases que describen el proceso de construcción y distribución de un proyecto. Cada fase representa una etapa específica en el ciclo de vida de construcción de un proyecto, y se ejecutan en un orden predefinido.</p>
@@ -1085,21 +1090,18 @@ Recuerda que para ejecutar los test con Maven desde el terminal, debes tener ins
 </td>
 <td class="content">
 <div class="paragraph">
-<p>Si maven no compila, da error: del tipo <code>--release</code> en maven (el <code>pom.xml</code> tiene release 11):</p>
+<p>Si maven no compila, da error: del tipo <code>--release</code> en maven (el <code>pom.xml</code> tiene release 21):</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>check your JAVA_HOME environment variable.</p>
+<p>verifica tu variable de entorno <code>JAVA_HOME</code>.</p>
 </li>
 <li>
-<p>I was setting the value of release to 11 as I am using JAVA 11.</p>
+<p>Debe estar configurado el valor de release a 21 ya que estoy usando JAVA 21.</p>
 </li>
 <li>
-<p>My System JAVA_HOME was set for java 8.</p>
-</li>
-<li>
-<p>After changing the JAVA_HOME user environment variable to the java 11 path, this got resolved.</p>
+<p>Si no es así, cambia la variable de entorno de usuario <code>JAVA_HOME</code> a la ruta de Java 21.</p>
 </li>
 </ul>
 </div>
@@ -1145,7 +1147,7 @@ Recuerda que para ejecutar los test con Maven desde el terminal, debes tener ins
 <p>En Eclipse: <em>Window &#8594; Preferences &#8594; Java &#8594; Installed JREs</em>. Comprueba que está marcada una instalación de JDK en lugar de un JRE.</p>
 </div>
 <div class="paragraph">
-<p>Si no tuvieses instalado un JDK, debes instalarlo. Recomendable <strong>JDK 11</strong>. Tras instalarlo, debes reiniciar Eclipse y añadirlo a la lista de Installed JREs.</p>
+<p>Si no tuvieses instalado un JDK, debes instalarlo. Recomendable <strong>JDK 21</strong>. Tras instalarlo, debes reiniciar Eclipse y añadirlo a la lista de Installed JREs.</p>
 </div>
 </td>
 </tr>
@@ -1154,7 +1156,7 @@ Recuerda que para ejecutar los test con Maven desde el terminal, debes tener ins
 </div>
 </div>
 <div class="sect1">
-<h2 id="_surefire_plugin">5. Surefire plugin</h2>
+<h2 id="_surefire_plugin">6. Surefire plugin</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Surefire es el plugin de Maven que se encarga de ejecutar los tests unitarios. Por defecto, Surefire busca los tests en el directorio <code>src/test/java</code> y los ejecuta. Si no se encuentra ningún test, no se ejecuta ninguno. Por eso, si no se ejecutan los tests, es porque Maven no los encuentra.</p>
@@ -1282,7 +1284,7 @@ Más info en <a href="https://maven.apache.org/surefire/maven-surefire-plugin/ex
 </div>
 </div>
 <div class="sect1">
-<h2 id="_plugin_de_cobertura">6. Plugin de Cobertura</h2>
+<h2 id="_plugin_de_cobertura">7. Plugin de Cobertura</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Para el cálculo de la cobertura desde Maven vamos a usar el plugin JaCoCo.</p>
@@ -1350,7 +1352,7 @@ Más info en <a href="https://maven.apache.org/surefire/maven-surefire-plugin/ex
 </div>
 </div>
 <div class="sect1">
-<h2 id="_verificar_un_valor_mínimo_de_cobertura">7. Verificar un valor mínimo de cobertura</h2>
+<h2 id="_verificar_un_valor_mínimo_de_cobertura">8. Verificar un valor mínimo de cobertura</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Además, se puede añadir una regla de verificación para que la construcción solamente de éxito si la cobertura es superior a un porcentaje mínimo.</p>
@@ -1415,7 +1417,7 @@ Más info en <a href="https://maven.apache.org/surefire/maven-surefire-plugin/ex
 </div>
 </div>
 <div class="sect1">
-<h2 id="_análisis_estático_de_código">8. Análisis estático de Código</h2>
+<h2 id="_análisis_estático_de_código">9. Análisis estático de Código</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Para mantener o aumentar la calidad de nuestro código debemos ayudarnos, entre otras herramientas, de técnicas de análisis estático de código que, básicamente, se encargan de buscar defectos en el código sin necesidad de que este se ejecute. En Java las más habituales son <strong>Checkstyle</strong>, <strong>FindBugs</strong> y <strong>PMD</strong>.</p>
@@ -1434,7 +1436,7 @@ Más info en <a href="https://maven.apache.org/surefire/maven-surefire-plugin/ex
 </ul>
 </div>
 <div class="sect2">
-<h3 id="_site">8.1. Site</h3>
+<h3 id="_site">9.1. Site</h3>
 <div class="paragraph">
 <p>El plugin Maven Site genera un sitio web con documentación del proyecto. Se invoca con el goal: <code>site</code>. Hay que añadirlo en el bloque <code>build</code> y en el bloque <code>reporting</code> del <code>pom.xml</code>.</p>
 </div>
@@ -1473,7 +1475,7 @@ Más info en <a href="https://maven.apache.org/surefire/maven-surefire-plugin/ex
 </div>
 </div>
 <div class="sect2">
-<h3 id="_checkstyle">8.2. Checkstyle</h3>
+<h3 id="_checkstyle">9.2. Checkstyle</h3>
 <div class="paragraph">
 <p>Para configurar estas 3 herramientas en Maven, dentro del <code>pom.xml</code> se añaden en el bloque <code>reporting</code> que se encarga de generar los informes de las herramientas de análisis estático de código. Utiliza el plugin <code>site</code> de Maven.</p>
 </div>
@@ -1527,7 +1529,7 @@ Más info en <a href="https://maven.apache.org/surefire/maven-surefire-plugin/ex
 </div>
 </div>
 <div class="sect2">
-<h3 id="_pmd">8.3. PMD</h3>
+<h3 id="_pmd">9.3. PMD</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="rouge highlight"><code data-lang="xml"><span class="nt">&lt;plugin&gt;</span>
@@ -1550,7 +1552,7 @@ Más info en <a href="https://maven.apache.org/surefire/maven-surefire-plugin/ex
 </div>
 </div>
 <div class="sect2">
-<h3 id="_findbugsspotbugs">8.4. FindBugs/Spotbugs</h3>
+<h3 id="_findbugsspotbugs">9.4. FindBugs/Spotbugs</h3>
 <div class="paragraph">
 <p><a href="https://spotbugs.readthedocs.io/en/latest/maven.html">Spotbugs</a> es la nueva versión de FindBugs.</p>
 </div>
@@ -1613,7 +1615,7 @@ Más info en <a href="https://maven.apache.org/surefire/maven-surefire-plugin/ex
 </div>
 </div>
 <div class="sect1">
-<h2 id="_documentación_javadoc">9. Documentación JavaDoc</h2>
+<h2 id="_documentación_javadoc">10. Documentación JavaDoc</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>El Plugin Javadoc utiliza la herramienta JavaDoc para generar la documentación de las clases del proyecto en formato html. Para ello, hay que ejecutar el goal <code>javadoc:javadoc</code></p>
@@ -1637,7 +1639,7 @@ Más info en <a href="https://maven.apache.org/surefire/maven-surefire-plugin/ex
 </div>
 </div>
 <div class="sect2">
-<h3 id="_diagramas_de_clases">9.1. Diagramas de clases</h3>
+<h3 id="_diagramas_de_clases">10.1. Diagramas de clases</h3>
 <div class="paragraph">
 <p>Al igual que la documentación JavaDoc, con Maven se pueden crear automáticamente <strong>diagramas de clases UML</strong> a partir del código.</p>
 </div>
@@ -1662,15 +1664,11 @@ Más info en <a href="https://maven.apache.org/surefire/maven-surefire-plugin/ex
             <span class="nt">&lt;version&gt;</span>2.1.0<span class="nt">&lt;/version&gt;</span>
           <span class="nt">&lt;/docletArtifact&gt;</span>
           <span class="nt">&lt;additionalOptions&gt;</span>
-            <span class="c">&lt;!-- -umlImageFormat (svg | svg_img | png | eps | none) --&gt;</span>
 			<span class="c">&lt;!-- &lt;additionalOption&gt;-umlImageFormat svg_img,png&lt;/additionalOption&gt; --&gt;</span>
 			<span class="nt">&lt;additionalOption&gt;</span>-umlImageFormat svg_img<span class="nt">&lt;/additionalOption&gt;</span>
 			<span class="nt">&lt;additionalOption&gt;</span>-private<span class="nt">&lt;/additionalOption&gt;</span>
 			<span class="c">&lt;!-- &lt;additionalOption&gt;-createPumlFiles&lt;/additionalOption&gt; --&gt;</span>
 			<span class="nt">&lt;additionalOption&gt;</span>-umlExcludedTypeReferences<span class="nt">&lt;/additionalOption&gt;</span> <span class="c">&lt;!-- añade metodos toString() y equals() --&gt;</span>
-			<span class="c">&lt;!-- &lt;additionalOption&gt;-umlJavaBeanPropertiesAsFields&lt;/additionalOption&gt; --&gt;</span>
-			<span class="c">&lt;!-- &lt;additionalOption&gt;-umlCustomDirective "skinparam classBackgroundColor
-					LightYellow"&lt;/additionalOption&gt; --&gt;</span>
           <span class="nt">&lt;/additionalOptions&gt;</span>
         <span class="nt">&lt;/configuration&gt;</span></strong>
       <span class="nt">&lt;/plugin&gt;</span>
@@ -1727,7 +1725,7 @@ Más info en <a href="https://maven.apache.org/surefire/maven-surefire-plugin/ex
 </div>
 </div>
 <div class="sect1">
-<h2 id="_owasp_dependency_check">10. OWASP Dependency Check</h2>
+<h2 id="_owasp_dependency_check">11. OWASP Dependency Check</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Uno de los fallos de seguridad más comunes en las aplicaciones web es el uso de componentes con vulnerabilidades de ciberseguridad conocidas. Esto ocurre cuando no comprobamos el historial de seguridad de las librerías que incorporamos a nuestros proyectos. Con frecuencia, basta con actualizar a las últimas versiones.</p>
@@ -1827,7 +1825,7 @@ Más info en <a href="https://maven.apache.org/surefire/maven-surefire-plugin/ex
 </div>
 <div id="footer">
 <div id="footer-text">
-Version 2.0<br>
+Version 2.1<br>
 </div>
 </div>
 <style>

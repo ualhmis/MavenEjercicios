@@ -46,7 +46,7 @@ Nombre y título del trabajo
 ////
 = Maven
 Herramientas y Métodos de Ingeniería del Software
-Version 2.0, Marzo-2023
+Version 2.1, Abril-2025
 Joaquín Cañadas <jjcanada@ual.es>
 
 
@@ -58,7 +58,7 @@ Joaquín Cañadas <jjcanada@ual.es>
 COLOCA A CONTINUACIÓN EL RESUMEN
 ////
 
-https://maven.apache.org/what-is-maven.html[Maven] es una herramienta de construcción y gestión de dependencias para proyectos Java. Maven se encarga de la gestión del ciclo de vida del proyecto, incluyendo la compilación, la ejecución de los test, la generación de documentación, el empaquetado y la distribución del software. Además, proporciona un sistema de construcción estandarizado y una estructura de proyecto coherente, lo que hace que sea más fácil para los desarrolladores trabajar en proyectos grandes y complejos. Además, proporciona gestión de dependencias, es decir, permite que un proyecto pueda utilizar librerías de terceros sin tener que preocuparse de cómo se instalan, cómo se actualizan, etc. Pero Maven es mucho más que eso: el objetivo principal de es permitir que un desarrollador comprenda el estado completo de un esfuerzo de desarrollo en el menor tiempo posible. Para lograr este objetivo, Maven se ocupa de varias áreas:
+https://maven.apache.org/what-is-maven.html[Maven] es una herramienta de automatización de la construcción (_build_) y gestión de dependencias para proyectos Java. Maven se encarga de la gestión del ciclo de vida del proyecto, incluyendo la compilación, la ejecución de los test, la generación de documentación, el empaquetado y la distribución del software. Además, proporciona un sistema de construcción estandarizado y una estructura de proyecto coherente, lo que hace que sea más fácil para los desarrolladores trabajar en proyectos grandes y complejos. Además, proporciona gestión de dependencias, es decir, permite que un proyecto pueda utilizar librerías de terceros sin tener que preocuparse de cómo se instalan, cómo se actualizan, etc. Pero Maven es mucho más que eso: el objetivo principal de es permitir que un desarrollador comprenda el estado completo de un esfuerzo de desarrollo en el menor tiempo posible. Para lograr este objetivo, Maven se ocupa de varias áreas:
 
 - _Facilitar el proceso de construcción_
 
@@ -73,29 +73,41 @@ https://maven.apache.org/what-is-maven.html[Maven] es una herramienta de constru
 COLOCA A CONTINUACIÓN LOS OBJETIVOS
 ////
 .Objetivos
-* 
-* 
+- Crear un proyecto nuevo en Maven y _mavernizar_ un proyecto existente.
+- Configurar el archivo `pom.xml` para incluir las dependencias necesarias para el proyecto.
+- Añadir y configurar plugins para realizar las tareas básicas, como ejecutar los tests unitarios, obtener la cobertura de los tests, análisis estático de código, generación de documentación JavaDoc, diagramas de clases, etc.
+- Realizar análisis de dependencias con OWASP Dependency Check.
 
+== Prerrequisitos
 
-# Prerrequisitos
+Para realizar esta actividad debes partir del o de los proyectos realizado(s) en la(s) *actividad(es) previa(s)* sobre *Pruebas Unitarias en JUnit 5*.
 
-El guion de esta actividad está actualizado para JUnit 5. Para cada proyecto de la actividad 05 - Pruebas Unitarias en JUnit.
+[NOTE] 
+====
+Los ejemplos de código y capturas de pantalla de esta actividad se basan en el repositorio https://github.com/ualhmis/hmis-coches.
+====
 
-## Configuración del UTF-8 en el IDE
+=== Configuración del UTF-8 en el IDE
+Antes de empezar, asegúrate de que el IDE que estás utilizando está configurado para trabajar con UTF-8.
 
-### Eclipse
+==== Eclipse
 ====
 image:images/eclipse_2.png[Eclipse] Si estás usando Eclipse, no olvides configurar Eclipse para que utilice UTF-8 como codificación predeterminada: _Window > Preferencies > General > Workspace > Text file encoding > Other > UTF-8_
 
 image::images/eclipse-utf8.png[Eclipse utf8]
 ====
 
-### Visual Studio Code
+==== Visual Studio Code
 ====
-image:images/Visual_Studio_Code_icon.png[VSCode] Si usas VS Code para desarrollar en Java: 
+image:images/Visual_Studio_Code_icon.png[VSCode] Si usas VS Code para desarrollar en Java debes tener en cuenta que, a diferencia de Eclipse que el propio _bundle_ ya incorpora todas las depedencias para trabajar en Java (JRE, JUnit, Maven, etc.), en VS Code debes instalar y configurar esas herramientas de manera independiente en tu sistema.
 
-. Instala las extensiones Java, Maven, Java Debugger
+. Debes tener instalado Java JDK en tu sistema, así como Maven. Descarga Maven desde https://maven.apache.org/download.cgi[Downloading Apache Maven] y sigue las instrucciones de instalación https://www.baeldung.com/install-maven-on-windows-linux-mac[How to Install Maven on Windows, Linux, and Mac].
 
+. En VSCode, instala las extensiones Java, Maven, Java Debugger,...
+
+image::images/vscode-extensions_Java.png[vscode-extensions_Java, width=50%]
+
+[start=3]
 . Si no configuras el UTF-8 en el IDE, los tests de caracteres con acentos o con eñes fallarán. Configurar UTF-8 en la compilación y depuración con Java: Extensions / Java Debugger
 
 image::images/vscode-java-utf8.png[vscode-java-utf8]
@@ -114,59 +126,20 @@ Esto se traduce en el archivo de `settings.json` del usuario en:
 // Entrar en modo numerado de apartados
 :numbered:
 
-## Convertir a proyecto Maven
+## Crear un proyecto Maven 
 
-====
-image:images/eclipse_2.png[Eclipse] Si en la actividad 5 habías partido del proyecto en GitHub, como ualhmis/junitEjercicios o ualhmis/hmis-coches, este paso y los dos siguientes ya están hechos. Simplemente debes comprobar que ya lo habíamos hecho en la actividad 5. Si, por el contrario, tu(s) proyecto(s) de la actividad 5 no están mavenizados, hazlo ahora:
+image:images/eclipse_2.png[Eclipse] Desde Eclipse, para crear un proyecto Maven: _New >  Maven Project_. En la siguiente ventana, selecciona la opción _Create a simple project (skip archetype selection)_.
 
-Sobre el proyecto, botón derecho, _Configure_, _Convert to maven project_
+image::images/New-Maven-Project.png[New-Maven-Project]
 
-image::images/convert-to-maven-project.png[convert-to-maven-project]
+Introduce los datos básicos: 
 
-Verás que se ha creado un nuevo archivo llamado `pom.xml` que es el que contiene la configuración de Maven para el proyecto.
-====
+- Group id: `ual.hmis`, es el identificador del grupo del proyecto.
+- Artifact id: `sesionXX`, es el identificador de artefacto (proyecto)
+- Version: `0.0.1-Snapshot`, es la version del artefacto bajo el grupo especificado
+- Packaging: `jar`, es el tipo de empaquetado del artefacto. En este caso, un archivo `.jar` ejecutable.
 
-====
-image:images/Visual_Studio_Code_icon.png[VSCode] Si usas VS Code para desarrollar en Java, haz lo siguiente:
-
-. Crea un archivo `pom.xml` en la raíz del proyecto, con el siguiente contenido básico:
-
-[source,xml]
-----
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
-	<modelVersion>4.0.0</modelVersion>
-	<groupId>hmis-coches</groupId>
-	<artifactId>hmis-coches</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
-    <build>
-    	<plugins>
-			<plugin>
-				<artifactId>maven-compiler-plugin</artifactId>
-				<version>3.11.0</version>
-				<configuration>
-					<release>11</release>
-				</configuration>
-			</plugin>
-        </plugins>
-    </build>
-</project>
-----
-====
-
-El contenido mínimo del `pom.xml` es:
-
-* `project` root
-* `modelVersion` - debe ser `4.0.0`
-* `groupId` - identificador del grupo del proyecto.
-* `artifactId` - identificador de artefacto (proyecto)
-* `version` - version del artefacto bajo el grupo especificado
-
-Los parámetros `groupId`, `artifactId`, y `version` forma el nombre completo de artefacto del proyecto (project's fully qualified artifact name). Este nombre tiene la forma `<groupId>:<artifactId>:<version>`. En el ejemplo anterior, sería `hmis-coches.hmis-coches:0.0.1-SNAPSHOT`.
-
-* `build` - contiene la configuración de construcción del proyecto, y los plugins que se ejecutan durante la misma. En el ejemplo anterior, se configura el plugin `maven-compiler-plugin` para que compile con *Java 11*.
-
-
-## Configurar el archivo `pom.xml`
+image::images/New-Maven-Project-groupid.png[New-Maven-Project]
 
 La estructura predeterminada de un proyecto Maven sigue una convención denominada "Standard Directory Layout" (Estructura de Directorios Estándar), que proporciona una forma coherente de organizar los archivos de un proyecto. Esta estructura se compone de los siguientes directorios y subdirectorios:
 
@@ -179,21 +152,106 @@ La estructura predeterminada de un proyecto Maven sigue una convención denomina
 - El directorio `target` es donde Maven coloca los resultados de la construcción y el empaquetado del proyecto.
 ====
 
-Si tu proyecto Java tiene otra estructura distinta a esta estructura de carpetas predeterminada, puedes modificarla en el archivo `pom.xml`. Por ejemplo, partiendo de la estructura de proyecto habitual en Eclipse, los fuentes están en la carpeta `src` y las clases con tests en la carpeta `test`. 
+[NOTE]
+====
+En cualquier caso, es recomendable mantener la estructura predeterminada de Maven. Así te asegurarás de que los archivos y recursos se encuentren en las ubicaciones esperadas, facilitando la integración con herramientas y plugins de Maven.
+====
 
-Para empezar, debes configurar el proyecto con *codificación `UTF-8`*, y las carpetas donde están los fuentes y los tests:
+
+====
+*Convertir a proyecto Maven*
+
+image:images/eclipse_2.png[Eclipse] Si partes de un proyecto que ya tiene contenido pero no está mavenizado(s), hazlo ahora:
+
+Sobre el proyecto, botón derecho, _Configure_, _Convert to maven project_
+
+image::images/convert-to-maven-project.png[convert-to-maven-project]
+
+Verás que se ha creado un nuevo archivo llamado `pom.xml` que es el que contiene la configuración de Maven para el proyecto.
+
+image:images/Visual_Studio_Code_icon.png[VSCode] Si usas VS Code para desarrollar en Java, crea manualmente el archivo `pom.xml` en la raíz del proyecto, con el contenido básico que aparece en la siguiente sección.
+====
+
+
+## Archivo de configuración de Maven: `pom.xml`
+
+El archivo `pom.xml` es el archivo de configuración principal de un proyecto Maven. Contiene información sobre el proyecto y la configuración de Maven para construirlo. El archivo `pom.xml` se encuentra en la raíz del proyecto y sigue un formato XML específico.
+
+El contenido mínimo del `pom.xml` es:
+
+* `project` root
+* `modelVersion` - debe ser `4.0.0`
+* `groupId` - identificador del grupo del proyecto.
+* `artifactId` - identificador de artefacto (proyecto)
+* `version` - version del artefacto bajo el grupo especificado
+
+Los parámetros `groupId`, `artifactId`, y `version` forma el nombre completo de artefacto del proyecto (project's fully qualified artifact name). Este nombre tiene la forma `<groupId>:<artifactId>:<version>`. En el ejemplo anterior, sería `ual.hmis.sesionXX:0.0.1-SNAPSHOT`.
+
+
+Además, el archivo `pom.xml` puede contener otros elementos opcionales, como:
+
+* `properties` - contiene propiedades del proyecto, como la versión de Java utilizada para compilar el proyecto. En el siguiente ejemplo se establece la codificación a `UTF-8`.
+
+* `build` - contiene la configuración de construcción del proyecto, y los plugins que se ejecutan durante la misma. En el siguiente ejemplo  se configura el plugin `maven-compiler-plugin` para que compile con *Java 21*.
 
 [source,xml]
 ----
-<properties>
-  <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-  <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-</properties>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>ual.hmis</groupId>
+    <artifactId>sesion06</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+    </properties>
+    <build>
+        <plugins>
+            <plugin>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.13.0</version>
+                <configuration>
+                    <release>21</release>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>
+----
 
+
+## Configurar el archivo `pom.xml`
+
+Si tu proyecto Java tiene otra estructura distinta a esta estructura de carpetas predeterminada, puedes modificarla en el archivo `pom.xml`. Por ejemplo, partiendo de la estructura de proyecto habitual en Eclipse, los fuentes están en la carpeta `src` y las clases con tests en la carpeta `test`. 
+
+[source,xml]
+----
 <build>
   <sourceDirectory>src</sourceDirectory>
   <testSourceDirectory>test</testSourceDirectory>
    ...
+</build>
+----
+
+También puedes modificar las carpetas donde se guardan los `resources`, archivos necesarios para el proyecto. Por ejemplo, si quieres modificarlos a las mismas carpetas donde están los fuentes y los tests, puedes añadir la siguiente configuración al `pom.xml`:
+
+[source,xml]
+----
+<build>
+	...
+	<resources>
+		<resource>
+			<directory>src/main/java/</directory>
+		</resource>	
+	</resources>	
+	<testResources>
+		<testResource>
+			<directory>src/test/java/</directory>
+		</testResource>	
+	</testResources>	
+  ...
 </build>
 ----
 
@@ -209,23 +267,23 @@ Añade las dependencias a JUnit 5 (simplemente comprobar, ya lo habíamos hecho 
 	<dependency>
 		<groupId>org.junit.jupiter</groupId>
 		<artifactId>junit-jupiter-engine</artifactId>
-		<version>5.9.2</version> <1>
+		<version>5.12.1</version> <1>
 		<scope>test</scope>
 	</dependency>
 	<dependency>
 		<groupId>org.junit.jupiter</groupId>
 		<artifactId>junit-jupiter-api</artifactId>
-		<version>5.9.2</version>
+		<version>5.12.1</version>
 		<scope>test</scope>
 	</dependency>
    	<dependency>
 		<groupId>org.junit.jupiter</groupId>
 		<artifactId>junit-jupiter-params</artifactId>
-		<version>5.9.2</version>
+		<version>5.12.1</version>
 		<scope>test</scope>
 	</dependency>
 ----
-<1> La versión de JUnit5 que usamos en el momento de escribir este documento es la `5.9.2`, pero debes comprobar la última versión en https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-api y usarla en tu `pom.xml`, en las tres dependencias de JUnit5.
+<1> La versión de JUnit5 que usamos en el momento de escribir este documento es la `5.12.1`, pero debes comprobar la última versión en https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-api y usarla en tu `pom.xml`, en las tres dependencias de JUnit5.
 
 [WARNING]
 ====
@@ -275,12 +333,11 @@ WARNING: Recuerda que para ejecutar los test con Maven desde el terminal, debes 
 
 [WARNING]
 ====
-Si maven no compila, da error: del tipo `--release` en maven (el `pom.xml` tiene release 11):
+Si maven no compila, da error: del tipo `--release` en maven (el `pom.xml` tiene release 21):
 
-- check your JAVA_HOME environment variable.
-- I was setting the value of release to 11 as I am using JAVA 11.
-- My System JAVA_HOME was set for java 8.
-- After changing the JAVA_HOME user environment variable to the java 11 path, this got resolved.
+- verifica tu variable de entorno `JAVA_HOME`.
+- Debe estar configurado el valor de release a 21 ya que estoy usando JAVA 21.
+- Si no es así, cambia la variable de entorno de usuario `JAVA_HOME` a la ruta de Java 21.
 ====
 
 Una vez ejecutada correctamente la construcción con Maven, comprueba en la *salida por consola* que se hayan ejecutando los tests correctamente: número de tests, Passed, Failed, ...
@@ -303,7 +360,7 @@ Si en la consola aparece el siguiente error:
 
 En Eclipse: _Window -> Preferences -> Java -> Installed JREs_. Comprueba que está marcada una instalación de JDK en lugar de un JRE. 
  
-Si no tuvieses instalado un JDK, debes instalarlo. Recomendable *JDK 11*. Tras instalarlo, debes reiniciar Eclipse y añadirlo a la lista de Installed JREs.
+Si no tuvieses instalado un JDK, debes instalarlo. Recomendable *JDK 21*. Tras instalarlo, debes reiniciar Eclipse y añadirlo a la lista de Installed JREs.
 ====
 
 ## Surefire plugin

@@ -25,6 +25,6 @@ Codificación, idioma, tabla de contenidos, tipo de documento
 ////
 Nombre y título del trabajo
 ////
-= Instalación y configuración de Jenkins
+= Automatización de la construcción (_build_): Maven
 
 . link:docs/maven.html[Maven]
