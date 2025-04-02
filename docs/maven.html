@@ -478,6 +478,10 @@ pre.rouge .gi {
   color: #116329;
   background-color: #dafbe1;
 }
+pre.rouge .ges {
+  font-weight: bold;
+  font-style: italic;
+}
 pre.rouge .kc {
   color: #0550ae;
 }
@@ -797,20 +801,6 @@ pre.rouge .gs {
 </div>
 </div>
 </div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-<div class="paragraph">
-<p>En cualquier caso, es recomendable mantener la estructura predeterminada de Maven. Así te asegurarás de que los archivos y recursos se encuentren en las ubicaciones esperadas, facilitando la integración con herramientas y plugins de Maven.</p>
-</div>
-</td>
-</tr>
-</table>
-</div>
 <div class="exampleblock">
 <div class="content">
 <div class="paragraph">
@@ -946,6 +936,20 @@ pre.rouge .gs {
 <span class="nt">&lt;/build&gt;</span></code></pre>
 </div>
 </div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>En cualquier caso, es recomendable mantener la estructura predeterminada de Maven. Así te asegurarás de que los archivos y recursos se encuentren en las ubicaciones esperadas, facilitando la integración con herramientas y plugins de Maven.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
 </div>
 </div>
 <div class="sect1">
@@ -959,7 +963,12 @@ pre.rouge .gs {
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="xml">	<span class="nt">&lt;dependency&gt;</span>
+<pre class="rouge highlight"><code data-lang="xml">  ...
+  <span class="nt">&lt;build&gt;</span>
+    ...
+  <span class="nt">&lt;/build&gt;</span>
+  <span class="nt">&lt;dependencies&gt;</span>
+	<span class="nt">&lt;dependency&gt;</span>
 		<span class="nt">&lt;groupId&gt;</span>org.junit.jupiter<span class="nt">&lt;/groupId&gt;</span>
 		<span class="nt">&lt;artifactId&gt;</span>junit-jupiter-engine<span class="nt">&lt;/artifactId&gt;</span>
 		<span class="nt">&lt;version&gt;</span>5.12.1<span class="nt">&lt;/version&gt;</span> <i class="conum" data-value="1"></i><b>(1)</b>
@@ -976,7 +985,15 @@ pre.rouge .gs {
 		<span class="nt">&lt;artifactId&gt;</span>junit-jupiter-params<span class="nt">&lt;/artifactId&gt;</span>
 		<span class="nt">&lt;version&gt;</span>5.12.1<span class="nt">&lt;/version&gt;</span>
 		<span class="nt">&lt;scope&gt;</span>test<span class="nt">&lt;/scope&gt;</span>
-	<span class="nt">&lt;/dependency&gt;</span></code></pre>
+	<span class="nt">&lt;/dependency&gt;</span>
+	<span class="nt">&lt;dependency&gt;</span>
+		<span class="nt">&lt;groupId&gt;</span>org.junit.platform<span class="nt">&lt;/groupId&gt;</span>
+		<span class="nt">&lt;artifactId&gt;</span>junit-platform-suite-engine<span class="nt">&lt;/artifactId&gt;</span>
+		<span class="nt">&lt;version&gt;</span>1.12.1<span class="nt">&lt;/version&gt;</span>
+		<span class="nt">&lt;scope&gt;</span>test<span class="nt">&lt;/scope&gt;</span>
+	<span class="nt">&lt;/dependency&gt;</span>
+  <span class="nt">&lt;/dependencies&gt;</span>
+  ...</code></pre>
 </div>
 </div>
 <div class="colist arabic">
@@ -1172,7 +1189,7 @@ Recuerda que para ejecutar los test con Maven desde el terminal, debes tener ins
 	<span class="nt">&lt;plugin&gt;</span>
 		<span class="nt">&lt;groupId&gt;</span>org.apache.maven.plugins<span class="nt">&lt;/groupId&gt;</span>
 		<span class="nt">&lt;artifactId&gt;</span>maven-surefire-plugin<span class="nt">&lt;/artifactId&gt;</span>
-		<span class="nt">&lt;version&gt;</span>3.0.0<span class="nt">&lt;/version&gt;</span>
+		<span class="nt">&lt;version&gt;</span>3.5.1<span class="nt">&lt;/version&gt;</span>
 	<span class="nt">&lt;/plugin&gt;</span>
 	...
    <span class="nt">&lt;/plugins&gt;</span>
@@ -1207,7 +1224,7 @@ Recuerda que para ejecutar los test con Maven desde el terminal, debes tener ins
 	<span class="nt">&lt;plugin&gt;</span>
 		<span class="nt">&lt;groupId&gt;</span>org.apache.maven.plugins<span class="nt">&lt;/groupId&gt;</span>
 		<span class="nt">&lt;artifactId&gt;</span>maven-surefire-plugin<span class="nt">&lt;/artifactId&gt;</span>
-		<span class="nt">&lt;version&gt;</span>3.0.0<span class="nt">&lt;/version&gt;</span>
+		<span class="nt">&lt;version&gt;</span>3.5.1<span class="nt">&lt;/version&gt;</span>
 		<span class="nt">&lt;configuration&gt;</span>
             <span class="nt">&lt;includes&gt;</span>
                 <span class="nt">&lt;include&gt;</span>Sample.java<span class="nt">&lt;/include&gt;</span>
@@ -1226,7 +1243,7 @@ Recuerda que para ejecutar los test con Maven desde el terminal, debes tener ins
 	<span class="nt">&lt;plugin&gt;</span>
 		<span class="nt">&lt;groupId&gt;</span>org.apache.maven.plugins<span class="nt">&lt;/groupId&gt;</span>
 		<span class="nt">&lt;artifactId&gt;</span>maven-surefire-plugin<span class="nt">&lt;/artifactId&gt;</span>
-		<span class="nt">&lt;version&gt;</span>3.0.0<span class="nt">&lt;/version&gt;</span>
+		<span class="nt">&lt;version&gt;</span>3.5.1<span class="nt">&lt;/version&gt;</span>
 		<span class="nt">&lt;configuration&gt;</span>
             <span class="nt">&lt;excludes&gt;</span>
               <span class="nt">&lt;exclude&gt;</span>**/TestCircle.java<span class="nt">&lt;/exclude&gt;</span>
@@ -1258,12 +1275,12 @@ Más info en <a href="https://maven.apache.org/surefire/maven-surefire-plugin/ex
 	<span class="nt">&lt;plugin&gt;</span>
 		<span class="nt">&lt;groupId&gt;</span>org.apache.maven.plugins<span class="nt">&lt;/groupId&gt;</span>
 		<span class="nt">&lt;artifactId&gt;</span>maven-surefire-plugin<span class="nt">&lt;/artifactId&gt;</span>
-		<span class="nt">&lt;version&gt;</span>3.0.0<span class="nt">&lt;/version&gt;</span>
+		<span class="nt">&lt;version&gt;</span>3.5.1<span class="nt">&lt;/version&gt;</span>
 		<span class="nt">&lt;dependencies&gt;</span>
 			<span class="nt">&lt;dependency&gt;</span>
 				<span class="nt">&lt;groupId&gt;</span>me.fabriciorby<span class="nt">&lt;/groupId&gt;</span>
 				<span class="nt">&lt;artifactId&gt;</span>maven-surefire-junit5-tree-reporter<span class="nt">&lt;/artifactId&gt;</span>
-				<span class="nt">&lt;version&gt;</span>0.1.0<span class="nt">&lt;/version&gt;</span>
+				<span class="nt">&lt;version&gt;</span>1.4.0<span class="nt">&lt;/version&gt;</span>
 			<span class="nt">&lt;/dependency&gt;</span>
 		<span class="nt">&lt;/dependencies&gt;</span>
 		<span class="nt">&lt;configuration&gt;</span>
@@ -1298,7 +1315,7 @@ Más info en <a href="https://maven.apache.org/surefire/maven-surefire-plugin/ex
 		<span class="nt">&lt;plugin&gt;</span>
 			<span class="nt">&lt;groupId&gt;</span>org.jacoco<span class="nt">&lt;/groupId&gt;</span>
 			<span class="nt">&lt;artifactId&gt;</span>jacoco-maven-plugin<span class="nt">&lt;/artifactId&gt;</span>
-			<span class="nt">&lt;version&gt;</span>0.8.8<span class="nt">&lt;/version&gt;</span>
+			<span class="nt">&lt;version&gt;</span>0.8.12<span class="nt">&lt;/version&gt;</span>
 			<span class="nt">&lt;executions&gt;</span>
 				<span class="nt">&lt;execution&gt;</span>
 					<span class="nt">&lt;id&gt;</span>prepare-agent<span class="nt">&lt;/id&gt;</span>
