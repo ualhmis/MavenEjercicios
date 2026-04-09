@@ -636,22 +636,37 @@ Para configurar estas 3 herramientas en Maven, dentro del `pom.xml` se añaden e
         <plugin>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-checkstyle-plugin</artifactId>
-            <version>3.1.1</version>
-        </plugin>
-        
+           <version>3.6.0</version>
+            <configuration>
+                <configLocation>config/checkstyle/checkstyle.xml</configLocation>
+                <consoleOutput>true</consoleOutput>
+            </configuration>
+            <executions>
+                <execution>
+                    <id>checkstyle-validation</id>
+                    <phase>verify</phase>
+                    <goals>
+                        <goal>check</goal>
+                    </goals>
+                </execution>
+            </executions>
+        </plugin>        
 		<plugin>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-jxr-plugin</artifactId>
-            <version>3.3.0</version>
+            <version>3.6.0</version>
         </plugin>
     </plugins>
   </reporting>
   ...
 </project>
 ----
-Checkstyle se invoca simplemente con el goal: `checkstyle:checkstyle`
+Checkstyle se invoca simplemente con el goal: `checkstyle:checkstyle`. 
+En la configuración previa, la ejecución se ha configurado también para que se incluya en el goal `verify`. Está configurado para que el informe se genere en la carpeta `target/site/checkstyle.html` y para que se muestre el resultado por consola.
 
-Sin embargo, puesto que vamos a generar varios informes de análisis estático de código, y con el objetivo de que todos se generen correctamente, hay que llamar a los 3 plugins desde un único goal: `site`.	
+El plugin jxr genera un informe de navegación por el código fuente, con enlaces a cada clase, método, etc. Se invoca con el goal: `jxr:jxr` y el resultado se genera en la carpeta `target/site/jxr/index.html`
+
+Puesto que vamos a generar varios informes de análisis estático de código, y con el objetivo de que todos se generen correctamente, hay que llamar a los 3 plugins desde un único goal: `site`.	
 
 En `target/site/` se genera el archivo `index.html` que será el punto de inicio, y otro `checkstyle.html`.
 
@@ -695,7 +710,8 @@ https://spotbugs.readthedocs.io/en/latest/maven.html[Spotbugs] es la nueva versi
 	<plugin>
 		<groupId>com.github.spotbugs</groupId>
 		<artifactId>spotbugs-maven-plugin</artifactId>
-		<version>4.7.3.4</version>
+		<version>4.9.8.3</version>
+		<scope>compile</scope>
 		<configuration>
 			<effort>Max</effort>
 			<threshold>Low</threshold>
@@ -706,7 +722,7 @@ https://spotbugs.readthedocs.io/en/latest/maven.html[Spotbugs] es la nueva versi
 				<plugin>
 					<groupId>com.h3xstream.findsecbugs</groupId>
 					<artifactId>findsecbugs-plugin</artifactId>
-					<version>1.12.0</version>
+					<version>1.14.0</version>
 				</plugin>
 			</plugins>
 		</configuration>
@@ -897,6 +913,41 @@ En la tarea correspondiente a la sesion07 debe entregarse un pequeño informe co
 
 ¡RECUERDA! Debes obtener una cobertura del 100% y resolver los defectos encontrados más importantes (no todos) por las herramientas de análisis estático de código.
 
+## Throubleshooting
+
+La sección _Throubleshooting_ aborda los problemas comunes que pueden surgir de uso y configuración, incluyendo dificultades con la ejecución de pruebas y la generación de informes.
+
+### VSCode no reinicia el cálculo de cobertura
+
+Ocurre cuando, por ejemplo, obtienes un 100% de cobertura. Entonces, borras un test para comprobar que baja la cobertura, pero sigue mostrando el 100%.
+
+El problema es el setting `java.test.config[].coverage.appendResult` que por defecto es `true` -> acumula resultados de ejecuciones anteriores en el mismo jacoco.exec, por eso siempre mostraba 100%.
+
+Para resolverlo:
+
+- Añadir `"appendResult": false` en `settings.json` — Ahora cada "Run with Coverage" sobrescribe los resultados en lugar de acumularlos.
+- Recargar los datos: Ctrl+Shift+P → Developer: Reload Window
+- Ejecutar _Run with Coverage_. Ya aparece la cobertura real
+- Ya no te volverá a pasar.
+
+Esto debería aparecer en el contenido de `.vscode/settings.json`:
+
+[souce,json]
+----
+{
+  "maven.view": "hierarchical",
+  "java.test.config": [
+    {
+      "name": "default",
+      "coverage": {
+        "appendResult": false
+      }
+    }
+  ]
+}
+----
+
 ## Referencias
 
+- https://checkstyle.org/
 

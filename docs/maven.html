@@ -478,10 +478,6 @@ pre.rouge .gi {
   color: #116329;
   background-color: #dafbe1;
 }
-pre.rouge .ges {
-  font-weight: bold;
-  font-style: italic;
-}
 pre.rouge .kc {
   color: #0550ae;
 }
@@ -596,6 +592,11 @@ pre.rouge .gs {
 </li>
 <li><a href="#_owasp_dependency_check">11. OWASP Dependency Check</a></li>
 <li><a href="#_entrega">Entrega</a></li>
+<li><a href="#_throubleshooting">Throubleshooting</a>
+<ul class="sectlevel2">
+<li><a href="#_vscode_no_reinicia_el_cálculo_de_cobertura">VSCode no reinicia el cálculo de cobertura</a></li>
+</ul>
+</li>
 <li><a href="#_referencias">Referencias</a></li>
 </ul>
 </li>
@@ -1507,13 +1508,25 @@ Más info en <a href="https://maven.apache.org/surefire/maven-surefire-plugin/ex
         <span class="nt">&lt;plugin&gt;</span>
             <span class="nt">&lt;groupId&gt;</span>org.apache.maven.plugins<span class="nt">&lt;/groupId&gt;</span>
             <span class="nt">&lt;artifactId&gt;</span>maven-checkstyle-plugin<span class="nt">&lt;/artifactId&gt;</span>
-            <span class="nt">&lt;version&gt;</span>3.1.1<span class="nt">&lt;/version&gt;</span>
+           <span class="nt">&lt;version&gt;</span>3.6.0<span class="nt">&lt;/version&gt;</span>
+            <span class="nt">&lt;configuration&gt;</span>
+                <span class="nt">&lt;configLocation&gt;</span>config/checkstyle/checkstyle.xml<span class="nt">&lt;/configLocation&gt;</span>
+                <span class="nt">&lt;consoleOutput&gt;</span>true<span class="nt">&lt;/consoleOutput&gt;</span>
+            <span class="nt">&lt;/configuration&gt;</span>
+            <span class="nt">&lt;executions&gt;</span>
+                <span class="nt">&lt;execution&gt;</span>
+                    <span class="nt">&lt;id&gt;</span>checkstyle-validation<span class="nt">&lt;/id&gt;</span>
+                    <span class="nt">&lt;phase&gt;</span>verify<span class="nt">&lt;/phase&gt;</span>
+                    <span class="nt">&lt;goals&gt;</span>
+                        <span class="nt">&lt;goal&gt;</span>check<span class="nt">&lt;/goal&gt;</span>
+                    <span class="nt">&lt;/goals&gt;</span>
+                <span class="nt">&lt;/execution&gt;</span>
+            <span class="nt">&lt;/executions&gt;</span>
         <span class="nt">&lt;/plugin&gt;</span>
-
 		<span class="nt">&lt;plugin&gt;</span>
             <span class="nt">&lt;groupId&gt;</span>org.apache.maven.plugins<span class="nt">&lt;/groupId&gt;</span>
             <span class="nt">&lt;artifactId&gt;</span>maven-jxr-plugin<span class="nt">&lt;/artifactId&gt;</span>
-            <span class="nt">&lt;version&gt;</span>3.3.0<span class="nt">&lt;/version&gt;</span>
+            <span class="nt">&lt;version&gt;</span>3.6.0<span class="nt">&lt;/version&gt;</span>
         <span class="nt">&lt;/plugin&gt;</span>
     <span class="nt">&lt;/plugins&gt;</span>
   <span class="nt">&lt;/reporting&gt;</span>
@@ -1522,10 +1535,14 @@ Más info en <a href="https://maven.apache.org/surefire/maven-surefire-plugin/ex
 </div>
 </div>
 <div class="paragraph">
-<p>Checkstyle se invoca simplemente con el goal: <code>checkstyle:checkstyle</code></p>
+<p>Checkstyle se invoca simplemente con el goal: <code>checkstyle:checkstyle</code>.
+En la configuración previa, la ejecución se ha configurado también para que se incluya en el goal <code>verify</code>. Está configurado para que el informe se genere en la carpeta <code>target/site/checkstyle.html</code> y para que se muestre el resultado por consola.</p>
 </div>
 <div class="paragraph">
-<p>Sin embargo, puesto que vamos a generar varios informes de análisis estático de código, y con el objetivo de que todos se generen correctamente, hay que llamar a los 3 plugins desde un único goal: <code>site</code>.</p>
+<p>El plugin jxr genera un informe de navegación por el código fuente, con enlaces a cada clase, método, etc. Se invoca con el goal: <code>jxr:jxr</code> y el resultado se genera en la carpeta <code>target/site/jxr/index.html</code></p>
+</div>
+<div class="paragraph">
+<p>Puesto que vamos a generar varios informes de análisis estático de código, y con el objetivo de que todos se generen correctamente, hay que llamar a los 3 plugins desde un único goal: <code>site</code>.</p>
 </div>
 <div class="paragraph">
 <p>En <code>target/site/</code> se genera el archivo <code>index.html</code> que será el punto de inicio, y otro <code>checkstyle.html</code>.</p>
@@ -1580,7 +1597,8 @@ Más info en <a href="https://maven.apache.org/surefire/maven-surefire-plugin/ex
 	<span class="nt">&lt;plugin&gt;</span>
 		<span class="nt">&lt;groupId&gt;</span>com.github.spotbugs<span class="nt">&lt;/groupId&gt;</span>
 		<span class="nt">&lt;artifactId&gt;</span>spotbugs-maven-plugin<span class="nt">&lt;/artifactId&gt;</span>
-		<span class="nt">&lt;version&gt;</span>4.7.3.4<span class="nt">&lt;/version&gt;</span>
+		<span class="nt">&lt;version&gt;</span>4.9.8.3<span class="nt">&lt;/version&gt;</span>
+		<span class="nt">&lt;scope&gt;</span>compile<span class="nt">&lt;/scope&gt;</span>
 		<span class="nt">&lt;configuration&gt;</span>
 			<span class="nt">&lt;effort&gt;</span>Max<span class="nt">&lt;/effort&gt;</span>
 			<span class="nt">&lt;threshold&gt;</span>Low<span class="nt">&lt;/threshold&gt;</span>
@@ -1591,7 +1609,7 @@ Más info en <a href="https://maven.apache.org/surefire/maven-surefire-plugin/ex
 				<span class="nt">&lt;plugin&gt;</span>
 					<span class="nt">&lt;groupId&gt;</span>com.h3xstream.findsecbugs<span class="nt">&lt;/groupId&gt;</span>
 					<span class="nt">&lt;artifactId&gt;</span>findsecbugs-plugin<span class="nt">&lt;/artifactId&gt;</span>
-					<span class="nt">&lt;version&gt;</span>1.12.0<span class="nt">&lt;/version&gt;</span>
+					<span class="nt">&lt;version&gt;</span>1.14.0<span class="nt">&lt;/version&gt;</span>
 				<span class="nt">&lt;/plugin&gt;</span>
 			<span class="nt">&lt;/plugins&gt;</span>
 		<span class="nt">&lt;/configuration&gt;</span>
@@ -1834,9 +1852,69 @@ Más info en <a href="https://maven.apache.org/surefire/maven-surefire-plugin/ex
 </div>
 </div>
 <div class="sect1">
+<h2 id="_throubleshooting">Throubleshooting</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>La sección <em>Throubleshooting</em> aborda los problemas comunes que pueden surgir de uso y configuración, incluyendo dificultades con la ejecución de pruebas y la generación de informes.</p>
+</div>
+<div class="sect2">
+<h3 id="_vscode_no_reinicia_el_cálculo_de_cobertura">VSCode no reinicia el cálculo de cobertura</h3>
+<div class="paragraph">
+<p>Ocurre cuando, por ejemplo, obtienes un 100% de cobertura. Entonces, borras un test para comprobar que baja la cobertura, pero sigue mostrando el 100%.</p>
+</div>
+<div class="paragraph">
+<p>El problema es el setting <code>java.test.config[].coverage.appendResult</code> que por defecto es <code>true</code> &#8594; acumula resultados de ejecuciones anteriores en el mismo jacoco.exec, por eso siempre mostraba 100%.</p>
+</div>
+<div class="paragraph">
+<p>Para resolverlo:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Añadir <code>"appendResult": false</code> en <code>settings.json</code> — Ahora cada "Run with Coverage" sobrescribe los resultados en lugar de acumularlos.</p>
+</li>
+<li>
+<p>Recargar los datos: Ctrl+Shift+P → Developer: Reload Window</p>
+</li>
+<li>
+<p>Ejecutar <em>Run with Coverage</em>. Ya aparece la cobertura real</p>
+</li>
+<li>
+<p>Ya no te volverá a pasar.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Esto debería aparecer en el contenido de <code>.vscode/settings.json</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>{
+  "maven.view": "hierarchical",
+  "java.test.config": [
+    {
+      "name": "default",
+      "coverage": {
+        "appendResult": false
+      }
+    }
+  ]
+}</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
 <h2 id="_referencias">Referencias</h2>
 <div class="sectionbody">
-
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://checkstyle.org/" class="bare">https://checkstyle.org/</a></p>
+</li>
+</ul>
+</div>
 </div>
 </div>
 </div>
